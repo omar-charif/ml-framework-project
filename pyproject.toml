@@ -1,0 +1,25 @@
+[project]
+name = "ml-framework-project"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "scikit-learn>=1.8.0",
+]
+
+[dependency-groups]
+dev = [
+    "black>=26.1.0",
+    "build>=1.4.0",
+    "flake8>=7.3.0",
+    "pylint>=4.0.4",
+    "taskipy>=1.14.1",
+]
+
+[tool.taskipy.tasks]
+format = "black ."
+format-check = "black --check ."
+flake = "flake8 ./"
+pylint = "pylint ./"
+build = "python -m build"
