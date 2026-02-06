@@ -20,6 +20,6 @@ dev = [
 [tool.taskipy.tasks]
 format = "black ."
 format-check = "black --check ."
-flake = "flake8 ./"
-pylint = "pylint ./"
+flake = "flake8 ./ml_framework_project"
+pylint = "pylint ./ml_framework_project"
 build = "python -m build"
