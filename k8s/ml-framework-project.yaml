@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ml-framework-project
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ml-framework-project
+  template:
+    metadata:
+      labels:
+        app: ml-framework-project
+    spec:
+      containers:
+        - name: api
+          image: ml-framework-project:local
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 2
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ml-framework-project
+spec:
+  selector:
+    app: ml-framework-project
+  ports:
+    - name: http
+      port: 8000
+      targetPort: 8000

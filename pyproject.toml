@@ -5,10 +5,20 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11,<3.13"
 dependencies = [
+    "fastapi>=0.115.0",
     "matplotlib>=3.10.8",
     "pandas>=3.0.0",
     "scikit-learn>=1.8.0",
+    "uvicorn[standard]>=0.34.0",
 ]
+
+[project.scripts]
+diamonds-regression = "ml_framework_project.main:diamonds_regression_entrypoint"
+diamonds-classification = "ml_framework_project.main:diamonds_classification_entrypoint"
+
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [

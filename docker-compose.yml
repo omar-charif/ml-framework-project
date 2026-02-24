@@ -1,0 +1,7 @@
+services:
+  app:
+    build: .
+    image: ml-framework-project:local
+    ports:
+      - "8000:8000"
+    command: uvicorn ml_framework_project.api:app --host 0.0.0.0 --port 8000
