@@ -13,9 +13,9 @@ WORKDIR /app
 # Runtime libs for common scientific Python wheels (scikit-learn/matplotlib)
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-        libgomp1 \
-        libfreetype6 \
-        libpng16-16 \
+    libgomp1 \
+    libfreetype6 \
+    libpng16-16 \
     && rm -rf /var/lib/apt/lists/*
 
 # Install uv (https://github.com/astral-sh/uv)
