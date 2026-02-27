@@ -60,6 +60,46 @@ def diamonds_classification_pipeline(file_path: str):
     }
 
 
+def diamonds_regression_pipeline_df(file_path: str):
+    """Returns the processed dataframe for regression pipeline."""
+    # Step 1: Read the data
+    df = read_data(file_path)
+
+    # Step 2: Drop rows with missing values
+    df_cleaned = drop_missing_values(df)
+
+    # Step 3: Fill missing values (if any) with mean, median, or mode
+    df_filled_mean = fill_missing_values_with_mean(df_cleaned, "price")
+
+    # Step 4: Standardize the 'price' column
+    df_standardized = standardize_column(df_filled_mean, "price")
+
+    # Step 5: Normalize the 'price' column
+    df_normalized = normalize_column(df_standardized, "price")
+
+    return df_normalized
+
+
+def diamonds_classification_pipeline_df(file_path: str):
+    """Returns the processed dataframe for classification pipeline."""
+    # Step 1: Read the data
+    df = read_data(file_path)
+
+    # Step 2: Drop rows with missing values
+    df_cleaned = drop_missing_values(df)
+
+    # Step 3: Fill missing values (if any) with mean, median, or mode
+    df_filled_mean = fill_missing_values_with_mean(df_cleaned, "cut")
+
+    # Step 4: Standardize the 'cut' column
+    df_standardized = standardize_column(df_filled_mean, "cut")
+
+    # Step 5: Normalize the 'cut' column
+    df_normalized = normalize_column(df_standardized, "cut")
+
+    return df_normalized
+
+
 def diamonds_regression_entrypoint() -> None:
     parser = argparse.ArgumentParser(
         description="Run the diamonds regression preprocessing pipeline"

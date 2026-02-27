@@ -19,6 +19,7 @@ def drop_missing_values(df: pd.DataFrame, columns: list = None) -> pd.DataFrame:
         df = df.dropna()
     return df
 
+
 def fill_missing_values(df: pd.DataFrame, column: str, value) -> pd.DataFrame:
     """
     Fills missing values in a specified column with a given value.
@@ -33,6 +34,7 @@ def fill_missing_values(df: pd.DataFrame, column: str, value) -> pd.DataFrame:
     """
     df[column] = df[column].fillna(value)
     return df
+
 
 def fill_missing_values_with_mean(df: pd.DataFrame, column: str) -> pd.DataFrame:
     """
@@ -49,6 +51,7 @@ def fill_missing_values_with_mean(df: pd.DataFrame, column: str) -> pd.DataFrame
     df[column] = df[column].fillna(mean_value)
     return df
 
+
 def fill_missing_values_with_median(df: pd.DataFrame, column: str) -> pd.DataFrame:
     """
     Fills missing values in a specified column with the median of that column.
@@ -64,6 +67,7 @@ def fill_missing_values_with_median(df: pd.DataFrame, column: str) -> pd.DataFra
     df[column] = df[column].fillna(median_value)
     return df
 
+
 def fill_missing_values_with_mode(df: pd.DataFrame, column: str) -> pd.DataFrame:
     """
     Fills missing values in a specified column with the mode of that column.
@@ -78,6 +82,7 @@ def fill_missing_values_with_mode(df: pd.DataFrame, column: str) -> pd.DataFrame
     mode_value = df[column].mode()[0]
     df[column] = df[column].fillna(mode_value)
     return df
+
 
 def standardize_column(df: pd.DataFrame, column: str) -> pd.DataFrame:
     """
@@ -95,6 +100,7 @@ def standardize_column(df: pd.DataFrame, column: str) -> pd.DataFrame:
     df[column] = (df[column] - mean) / std
     return df
 
+
 def normalize_column(df: pd.DataFrame, column: str) -> pd.DataFrame:
     """
     Normalizes a specified column by scaling the values to a range of [0, 1].
@@ -111,6 +117,7 @@ def normalize_column(df: pd.DataFrame, column: str) -> pd.DataFrame:
     df[column] = (df[column] - min_value) / (max_value - min_value)
     return df
 
+
 def normalize_columns(df: pd.DataFrame, columns: list = None) -> pd.DataFrame:
     """
     Normalizes multiple specified columns by scaling the values to a range of [0, 1].
@@ -124,10 +131,11 @@ def normalize_columns(df: pd.DataFrame, columns: list = None) -> pd.DataFrame:
     """
     if columns is None:
         columns = df.columns
-        
+
     for column in columns:
         df = normalize_column(df, column)
     return df
+
 
 def shuffle_dataframe(df: pd.DataFrame, random_state: int = None) -> pd.DataFrame:
     """
@@ -141,6 +149,7 @@ def shuffle_dataframe(df: pd.DataFrame, random_state: int = None) -> pd.DataFram
     pd.DataFrame: Shuffled DataFrame.
     """
     return df.sample(frac=1, random_state=random_state).reset_index(drop=True)
+
 
 def encode_categorical_column(df: pd.DataFrame, column: str) -> pd.DataFrame:
     """
@@ -157,7 +166,10 @@ def encode_categorical_column(df: pd.DataFrame, column: str) -> pd.DataFrame:
     df = pd.concat([df.drop(column, axis=1), dummies], axis=1)
     return df
 
-def sample_dataframe(df: pd.DataFrame, n: int, random_state: int = None) -> pd.DataFrame:
+
+def sample_dataframe(
+    df: pd.DataFrame, n: int, random_state: int = None
+) -> pd.DataFrame:
     """
     Samples n random rows from the DataFrame.
 

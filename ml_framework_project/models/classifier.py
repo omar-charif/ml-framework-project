@@ -4,6 +4,7 @@ import numpy as np
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 
+
 class Classifier(ABC):
     def __init__(
         self,
@@ -23,7 +24,7 @@ class Classifier(ABC):
         n_jobs : number of parallel jobs that the model can use
         """
         self.random_state = random_state
-        self.name = name       
+        self.name = name
         self.model_additional_configs = model_configs
         self.model = None
         self.fitted_model = None
@@ -65,7 +66,8 @@ class Classifier(ABC):
     def predict(self, x_data: np.ndarray) -> np.ndarray:
         res_array = self.fitted_model.predict(x_data)
         return res_array
-    
+
+
 class SVMClassifier(Classifier):
     def __init__(
         self,
@@ -111,17 +113,13 @@ class SVMClassifier(Classifier):
         pass
 
 
-
 class LogisticRegressionClassifier(Classifier):
     def __init__(self, random_state: int = 1, **model_configs):
         super().__init__(
-            name="Logistic_Regression",
-            random_state=random_state,
-            **model_configs
+            name="Logistic_Regression", random_state=random_state, **model_configs
         )
         self.model = LogisticRegression(
-            random_state=self.random_state,
-            **self.model_additional_configs
+            random_state=self.random_state, **self.model_additional_configs
         )
 
     def get_features_ranking(self):
@@ -134,11 +132,7 @@ class LogisticRegressionClassifier(Classifier):
 
 
 if __name__ == "__main__":
-    logistic_model_config = {
-        "tol": 0.001,
-        "max_iter": 200
-
-    }
+    logistic_model_config = {"tol": 0.001, "max_iter": 200}
 
     logistic_regression = LogisticRegressionClassifier(**logistic_model_config)
     print(logistic_regression.__dict__)

@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 def read_csv(file_path: str) -> pd.DataFrame:
     """
     Reads a CSV file and returns a DataFrame.
@@ -16,6 +17,7 @@ def read_csv(file_path: str) -> pd.DataFrame:
     except Exception as e:
         print(f"Error reading the CSV file: {e}")
         return pd.DataFrame()
+
 
 def read_excel(file_path: str) -> pd.DataFrame:
     """
@@ -34,6 +36,7 @@ def read_excel(file_path: str) -> pd.DataFrame:
         print(f"Error reading the Excel file: {e}")
         return pd.DataFrame()
 
+
 def read_json(file_path: str) -> pd.DataFrame:
     """
     Reads a JSON file and returns a DataFrame.
@@ -50,6 +53,7 @@ def read_json(file_path: str) -> pd.DataFrame:
     except Exception as e:
         print(f"Error reading the JSON file: {e}")
         return pd.DataFrame()
+
 
 def read_parquet(file_path: str) -> pd.DataFrame:
     """
@@ -68,6 +72,7 @@ def read_parquet(file_path: str) -> pd.DataFrame:
         print(f"Error reading the Parquet file: {e}")
         return pd.DataFrame()
 
+
 def read_data(file_path: str) -> pd.DataFrame:
     """
     Reads a data file (CSV, Excel, JSON, Parquet) and returns a DataFrame.
@@ -78,13 +83,13 @@ def read_data(file_path: str) -> pd.DataFrame:
     Returns:
     pd.DataFrame: The DataFrame containing the data from the file.
     """
-    if file_path.endswith('.csv'):
+    if file_path.endswith(".csv"):
         return read_csv(file_path)
-    elif file_path.endswith('.xlsx') or file_path.endswith('.xls'):
+    elif file_path.endswith(".xlsx") or file_path.endswith(".xls"):
         return read_excel(file_path)
-    elif file_path.endswith('.json'):
+    elif file_path.endswith(".json"):
         return read_json(file_path)
-    elif file_path.endswith('.parquet'):
+    elif file_path.endswith(".parquet"):
         return read_parquet(file_path)
     else:
         print("Unsupported file format.")

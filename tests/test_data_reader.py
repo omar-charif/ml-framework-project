@@ -52,7 +52,9 @@ def test_read_data_dispatch_csv_and_json(tmp_path, sample_df):
     out_json = read_data(str(jsonp))
 
     assert_frame_equal(out_csv.reset_index(drop=True), sample_df.reset_index(drop=True))
-    assert_frame_equal(out_json.reset_index(drop=True), sample_df.reset_index(drop=True))
+    assert_frame_equal(
+        out_json.reset_index(drop=True), sample_df.reset_index(drop=True)
+    )
 
 
 def test_read_data_unsupported_extension_returns_empty(tmp_path):
